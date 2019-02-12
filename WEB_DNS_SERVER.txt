@@ -1,0 +1,140 @@
+#docker run <image> (Imagem recomendada: ubuntu:14.04 )
+
+#docker run -it --name web -p 8080:80 <image> /bin/bash
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+apt-get update && apt-get upgrade && apt update && clear
+
+apt-get install apache2 && apt-get install apache2-utils && apt-get install bind9 && apt install vim && apt-get install dnsutils --fix-missing
+
+/etc/init.d/apache2 start
+
+cd /var/www/html
+
+vi index.html (change the html for something)
+
+cd /etc/apache2/sites-available/
+touch file.conf
+....................................................................................................................................................................
+vi file.conf( <VirtualHost *:80> 
+			ServerName <Nome do website>
+			DocumentRoot /var/www/<X(nome-pasta-que-irá-criar)> 
+	      </VirtualHost>
+....................................................................................................................................................................
+cd /var/www/
+
+mkdir X
+cd X
+touch index.html
+vi index.html (colocar algo)
+
+cd /etc/apache2/sites-available/
+
+a2ensite file.conf
+
+service apache2 reload
+
+a2ensite file.conf
+
+cd /etc/bind
+
+vi named.conf.local (..................................................................................
+zone "<nome-do-web-site-completo>" { 
+	type master;
+	file "/etc/bind/zonas/db.<Y [nome-qualquer]>"; 
+};
+
+zone "[ip-reverso-without-o-ultimos-numeros-do-ip](ex:)1.168.192.in-addr.arpa" { 
+	type master;
+	file "/etc/bind/zonas/db.<Z [numero-qualquer]>"; 
+};
+.......................................................................................................
+
+mkdir zonas
+
+cp db.local zonas/db.<Y>
+cp db.127 zonas/db.<Z>
+
+cd zonas
+
+vi db.Y
+:..........................................................................................................................:
+$TTL	604800
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-completo-do-site>.	root.<nome-completo-do-site>. (
+				2						; Serial
+			   604800						; Refresh
+			    86400						; Retry
+			  2419200						; Expire
+			   604800 )						; Negative Cache TTL
+;
+@	IN	NS	<nome-da-maquina-virtual>.<nome-completo-do-site>.
+@	IN	A	<ip-da-maquina>
+<nome-da-maquina-virtual>	IN	A	<ip-da-maquina>
+<nome-do-site-sem-a-extensão>	IN 	A	<ip-da-maquina>
+roteador	IN	A	<ip-do-roteador>
+www	IN	CNAME	<nome-completo-do-site>.
+
+:**************************************************************************************************************************:
+
+vi db.Z
+:..........................................................................................................................:
+$TTL	604800
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-completo-do-site>.	root.<nome-completo-do-site>. (
+				1						; Serial
+			   604800						; Refresh
+			    86400						; Retry
+			  2419200						; Expire
+			   604800 )						; Negative Cache TTL
+;
+	IN	NS	<nome-da-maquina-virtual>.
+<ip-valido-da-maquina[Os ultimos digitos do IP da maquina]>	IN	PTR	<nome-da-maquina-virtual>.<nome-completo-do-site>.
+<ip-valido-do-roteador[Os ultimos digitos do IP do roteador]>	IN	PTR	roteador.<nome-completo-do-site>.
+
+:**************************************************************************************************************************:
+
+named-checkzone <nome-completo-do-site> <db.Y>
+
+vi /etc/bind/named.conf.options
+
+forwarders{
+	<IP-do-roteador>
+	<DNS-do-google>
+}
+
+Ir na interface grafica da Desktop do seu SO e abrir as configurações de rede (Network Settings)
+ADD a red <seu-IP> e colocar um Nome nela  (Add Profile e Colocar no input do DNS o ip da maquina)
+
+Voltando ao terminal, colocar: 
+service bind9 start
+service bind9 reload
+
+/etc/init.d/bind9 start
+/etc/init.d/bind9 restart 
+/etc/init.d/bind9 reload
+
+vi /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+
+auto ens33
+iface ens33 inet static
+	address	<ip-da-maquina>
+	netmask	255.255.255.0
+	network	<network-da-rede>
+	broadcast <broadcast-da-rede>
+	gateway	<ip-do-roteador>
+
+vi /etc/hosts
+
+adicionar : <seu-ip>	<nome-da-maquina>.<nome-do-web-site-completo> <nome-da-maquina>
+
+terminal, write: reboot
+
+Pronto...
+
+............................................................................
+Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento
+,e vá no DHCP , então coloque o ip do servidor dns
+
+
+

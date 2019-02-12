@@ -1,7 +1,3 @@
-#docker run <image> (Imagem recomendada: ubuntu:14.04 )
-
-#docker run -it --name web -p 8080:80 <image> /bin/bash
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 apt-get update && apt-get upgrade && apt update && clear
 
 apt-get install apache2 && apt-get install apache2-utils && apt-get install bind9 && apt install vim && apt-get install dnsutils --fix-missing
@@ -17,7 +13,7 @@ touch file.conf
 ....................................................................................................................................................................
 vi file.conf( <VirtualHost *:80> 
 			ServerName <Nome do website>
-			DocumentRoot /var/www/<X(nome-pasta-que-ir·-criar)> 
+			DocumentRoot /var/www/<X(nome-pasta-que-ir√°-criar)> 
 	      </VirtualHost>
 ....................................................................................................................................................................
 cd /var/www/
@@ -69,7 +65,7 @@ $TTL	604800
 @	IN	NS	<nome-da-maquina-virtual>.<nome-completo-do-site>.
 @	IN	A	<ip-da-maquina>
 <nome-da-maquina-virtual>	IN	A	<ip-da-maquina>
-<nome-do-site-sem-a-extens„o>	IN 	A	<ip-da-maquina>
+<nome-do-site-sem-a-extens√£o>	IN 	A	<ip-da-maquina>
 roteador	IN	A	<ip-do-roteador>
 www	IN	CNAME	<nome-completo-do-site>.
 
@@ -100,7 +96,7 @@ forwarders{
 	<DNS-do-google>
 }
 
-Ir na interface grafica da Desktop do seu SO e abrir as configuraÁıes de rede (Network Settings)
+Ir na interface grafica da Desktop do seu SO e abrir as configura√ß√µes de rede (Network Settings)
 ADD a red <seu-IP> e colocar um Nome nela  (Add Profile e Colocar no input do DNS o ip da maquina)
 
 Voltando ao terminal, colocar: 
@@ -134,7 +130,7 @@ Pronto...
 
 ............................................................................
 Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento
-,e v· no DHCP , ent„o coloque o ip do servidor dns
+,e v√° no DHCP , ent√£o coloque o ip do servidor dns
 
 
 

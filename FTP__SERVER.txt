@@ -36,7 +36,7 @@ After all, go to the browser and put this url:  ftp://<ip-da-sua-maquina>:58791
 
 ...................................................................................:
 
-Os arquivos que tu desejas compartilhar dever„o ser colocador na pasta /home/<nome-de-usuario>
+Os arquivos que desejas compartilhar dever√£o ser colocador na pasta /home/<nome-de-usuario>
 
 Se der Erro 530, escreva na prompt>> /etc/init.d/proftpd restart
 

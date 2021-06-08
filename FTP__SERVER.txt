@@ -10,8 +10,8 @@ vi /etc/proftpd/proftpd.conf
 Find these Commands and Change it to: 
 
 UseIPv6		off
-ServerName	"<put-the-name-here>"
-#Port 		58791(opcional)
+ServerName	"<put-any-name-here>"
+Port 		58791 #[ Porta que será escolhida ]
 MaxInstances	20
 :..................................................................................:
 
@@ -22,7 +22,7 @@ AllowForeignAddress	on
 DefaultRoot		~
 RequireValidShell	off
 PassivePorts		27000 28000
-MasqueradeAddress	201.number.86.anothernumber (ip)
+MasqueradeAddress	201.<any-number>.86.<any-anothernumber>
 :..................................................................................:
 
 iptables -A INPUT -p tcp --dport 58791 -j ACCEPT
@@ -32,7 +32,12 @@ iptables -A INPUT -p tcp --dport 27000:28000 -j ACCEPT
 
 adduser -shell /bin/false <nome-de-usuario-que-desejas>
 
-After all, go to the browser and put this url:  ftp://<ip-da-sua-maquina>:58791
+#Enter a new Unix password: <Dê uma senha>
+#Aperte Enter até finalizar o processo
+
+After all, go to the browser (FireFox) and put this url:  ftp://<ip-da-sua-maquina>:58791
+
+#Agora coloque o nome do usuario criado e a senha que foi dada;
 
 ...................................................................................:
 

@@ -6,7 +6,8 @@ apt-get install apache2 && apt-get install apache2-utils && apt-get install bind
 
 cd /var/www/html
 
-vi index.html (change the html for something)
+#Change the html by putting something
+vi index.html  
 
 cd /etc/apache2/sites-available/
 touch file.conf
@@ -15,16 +16,18 @@ vi file.conf
 
 #Dentro de file.conf coloque:
 <VirtualHost *:80> 
-	ServerName <Nome do website>
-	DocumentRoot /var/www/<X(nome-pasta-que-irá-criar)> 
+	ServerName <nome-do-website>
+	DocumentRoot /var/www/<nome-da-pasta-que-irá-criar>  #Em seguida deverá ser criado a pasta nomeada
 </VirtualHost>
 ....................................................................................................................................................................
 cd /var/www/
 
-mkdir X
-cd X
+mkdir <nome_da_pasta_atribuida>
+cd <nome_da_pasta_atribuida>
 touch index.html
-vi index.html (colocar algo)
+
+#Coloque alguma coisa
+vi index.html
 
 cd /etc/apache2/sites-available/
 
@@ -36,48 +39,49 @@ a2ensite file.conf
 
 cd /etc/bind
 
-vi named.conf.local (..................................................................................
-zone "<nome-do-web-site-completo>" { 
+..................................................................................
+vi named.conf.local
+zone "<nome-do-website>.com" { 
 	type master;
-	file "/etc/bind/zonas/db.<Y [nome-qualquer]>"; 
+	file "/etc/bind/zonas/db.one"; 
 };
 
-zone "[ip-reverso-without-o-ultimos-numeros-do-ip](ex:)1.168.192.in-addr.arpa" { 
+zone "[ip-reverso-sem-o-ultimos-numeros-do-ip](ex:)1.168.192.in-addr.arpa" { 
 	type master;
-	file "/etc/bind/zonas/db.<Z [numero-qualquer]>"; 
+	file "/etc/bind/zonas/db.two"; 
 };
 .......................................................................................................
 
 mkdir zonas
 
-cp db.local zonas/db.<Y>
-cp db.127 zonas/db.<Z>
+cp db.local zonas/db.one
+cp db.127 zonas/db.two
 
 cd zonas
 
-vi db.Y
+vi db.one
 :..........................................................................................................................:
 $TTL	604800
-@	IN	SOA	<nome-da-maquina-virtual>.<nome-completo-do-site>.	root.<nome-completo-do-site>. (
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
 				2						; Serial
 			   604800						; Refresh
 			    86400						; Retry
 			  2419200						; Expire
 			   604800 )						; Negative Cache TTL
 ;
-@	IN	NS	<nome-da-maquina-virtual>.<nome-completo-do-site>.
+@	IN	NS	<nome-da-maquina-virtual>.<nome-do-site>.com.
 @	IN	A	<ip-da-maquina>
 <nome-da-maquina-virtual>	IN	A	<ip-da-maquina>
-<nome-do-site-sem-a-extensão>	IN 	A	<ip-da-maquina>
+<nome-do-website>	IN 	A	<ip-da-maquina>
 roteador	IN	A	<ip-do-roteador>
-www	IN	CNAME	<nome-completo-do-site>.
+www	IN	CNAME	<nome-do-website>.com.
 
 :**************************************************************************************************************************:
 
-vi db.Z
+vi db.two
 :..........................................................................................................................:
 $TTL	604800
-@	IN	SOA	<nome-da-maquina-virtual>.<nome-completo-do-site>.	root.<nome-completo-do-site>. (
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
 				1						; Serial
 			   604800						; Refresh
 			    86400						; Retry
@@ -85,24 +89,26 @@ $TTL	604800
 			   604800 )						; Negative Cache TTL
 ;
 	IN	NS	<nome-da-maquina-virtual>.
-<ip-valido-da-maquina[Os ultimos digitos do IP da maquina]>	IN	PTR	<nome-da-maquina-virtual>.<nome-completo-do-site>.
-<ip-valido-do-roteador[Os ultimos digitos do IP do roteador]>	IN	PTR	roteador.<nome-completo-do-site>.
+<Os ultimos digitos do IP da maquina>	IN	PTR	<nome-da-maquina-virtual>.<nome-do-site>.com.
+<Os ultimos digitos do IP do roteador>	IN	PTR	roteador.<nome-do-site>.com.
 
 :**************************************************************************************************************************:
-
-named-checkzone <nome-completo-do-site> <db.Y>
+#Test Zone
+named-checkzone <nome-do-site>.com db.one
+named-checkzone <nome-do-site>.com db.two
 
 vi /etc/bind/named.conf.options
 
+#Procure por forwarders dentro de options e coloque:
 forwarders{
-	<IP-do-roteador>
-	<DNS-do-google>
+	<IP-do-roteador>;
+	<DNS-do-google>;
 }
 
-Ir na interface grafica da Desktop do seu SO e abrir as configurações de rede (Network Settings)
-ADD a red <seu-IP> e colocar um Nome nela  (Add Profile e Colocar no input do DNS o ip da maquina)
+#Ir na interface grafica da Desktop do seu SO e abrir as configurações de rede (Network Settings);
+#Add Profile: Mude o nome e no input do DNS (ip do server) coloque o ip da maquina;
 
-Voltando ao terminal, colocar: 
+#Voltando ao terminal, colocar: 
 service bind9 start
 service bind9 reload
 
@@ -119,13 +125,14 @@ auto ens33
 iface ens33 inet static
 	address	<ip-da-maquina>
 	netmask	255.255.255.0
-	network	<network-da-rede>
-	broadcast <broadcast-da-rede>
+	network	<network-da-rede>	#Exemplo: 192.168.137.0
+	broadcast <broadcast-da-rede>	#Exemplo: 192.168.137.255
 	gateway	<ip-do-roteador>
 
 vi /etc/hosts
 
-adicionar : <seu-ip>	<nome-da-maquina>.<nome-do-web-site-completo> <nome-da-maquina>
+#Já na edição coloque:
+<seu-ip>	<nome-da-maquina>.<nome-do-web-site>.com <nome-da-maquina>
 
 terminal, write: reboot
 

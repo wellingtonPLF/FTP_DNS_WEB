@@ -11,10 +11,13 @@ vi index.html (change the html for something)
 cd /etc/apache2/sites-available/
 touch file.conf
 ....................................................................................................................................................................
-vi file.conf( <VirtualHost *:80> 
-			ServerName <Nome do website>
-			DocumentRoot /var/www/<X(nome-pasta-que-irá-criar)> 
-	      </VirtualHost>
+vi file.conf
+
+#Dentro de file.conf coloque:
+<VirtualHost *:80> 
+	ServerName <Nome do website>
+	DocumentRoot /var/www/<X(nome-pasta-que-irá-criar)> 
+</VirtualHost>
 ....................................................................................................................................................................
 cd /var/www/
 

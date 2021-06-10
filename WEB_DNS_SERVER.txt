@@ -35,6 +35,17 @@ a2ensite file.conf
 
 service apache2 reload
 
+#Se der algum erro faça isso: 
+
+#Veja se tem algum processo utilizando a porta :80
+netstat -tulpn | grep :80
+
+#Se houver e não for o apache, então utilize o comando abaixo:
+ss -6 -tlnp |grep 80
+
+#Ache o PID e então mate o processo: 
+kill <pid_number>
+
 a2ensite file.conf
 
 cd /etc/bind
@@ -139,7 +150,7 @@ terminal, write: reboot
 Pronto...
 
 ............................................................................
-Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento
+Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento que fica no painel de controle
 ,e vá no DHCP , então coloque o ip do servidor dns
 
 

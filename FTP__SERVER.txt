@@ -35,7 +35,9 @@ adduser -shell /bin/false <nome-de-usuario-que-desejas>
 #Enter a new Unix password: <Dê uma senha>
 #Aperte Enter até finalizar o processo
 
-After all, go to the browser (FireFox) and put this url:  ftp://<ip-da-sua-maquina>:58791
+After all, go to the browser and put this url:  ftp://<ip-da-sua-maquina>:58791
+
+#If you wanna use Chorme: Go to url -> chrome://flags | search for -> enable-ftp | click in enable |
 
 #Agora coloque o nome do usuario criado e a senha que foi dada;
 

@@ -152,6 +152,20 @@ Pronto...
 ............................................................................
 Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento que fica no painel de controle
 ,e vá no DHCP , então coloque o ip do servidor dns
+............................................................................
 
+IMPORTANTE
 
+PS -> Caso você queira recuperar a conexão da sua maquina virtual com o wifi:
+
+vi /etc/network/interfaces
+
+#Apague esse trecho de codigo
+auto ens33
+iface ens33 inet static
+	address	<ip-da-maquina>
+	netmask	255.255.255.0
+	network	<network-da-rede>	#Exemplo: 192.168.137.0
+	broadcast <broadcast-da-rede>	#Exemplo: 192.168.137.255
+	gateway	<ip-do-roteador>
 

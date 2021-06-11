@@ -9,6 +9,9 @@ cd /var/www/html
 #Change the html by putting something
 vi index.html  
 
+#See apache works by access url: localhost
+
+#Creating a new location:
 cd /etc/apache2/sites-available/
 touch file.conf
 ....................................................................................................................................................................

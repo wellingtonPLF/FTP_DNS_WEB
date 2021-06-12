@@ -65,7 +65,7 @@ zone "[ip-reverso-sem-o-ultimos-numeros-do-ip](ex:)1.168.192.in-addr.arpa" {
 	file "/etc/bind/zonas/db.two"; 
 };
 .......................................................................................................
-#Use comando a seguir para saber o ip do roteador:
+#Use comando a seguir para saber o ip do roteador e a Use Interface:
 route
 
 mkdir zonas
@@ -76,7 +76,7 @@ cp db.127 zonas/db.two
 cd zonas
 
 vi db.one
-:..........................................................................................................................:
+:..........................................................................................................................:See [changed <ip-da-maquina> to a valid ip]
 $TTL	604800
 @	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
 				2						; Serial
@@ -95,7 +95,8 @@ www	IN	CNAME	<nome-do-website>.com.
 :**************************************************************************************************************************:
 
 vi db.two
-:..........................................................................................................................:
+:..........................................................................................................................:See
+[changed <Os ultimos digitos do IP da maquina> to a valid ip]
 $TTL	604800
 @	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
 				1						; Serial
@@ -118,7 +119,7 @@ vi /etc/bind/named.conf.options
 #Procure por forwarders dentro de options e coloque:
 forwarders{
 	<IP-do-roteador>;
-	<DNS-do-google>;
+	8.8.8.8;
 }
 
 #Ir na interface grafica da Desktop do seu SO e abrir as configurações de rede (Network Settings);
@@ -138,7 +139,7 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-iface eth0 inet static
+iface eth0 inet static				..............See[changed address to a valid ip]
 	address	<ip-da-maquina>
 	netmask	255.255.255.0
 	network	<network-da-rede>	#Exemplo: 192.168.137.0
@@ -147,7 +148,7 @@ iface eth0 inet static
 
 vi /etc/hosts
 
-#Já na edição coloque:
+#Já na edição coloque:								...........See[changed <seu-ip> to a valid ip]
 <seu-ip>	<nome-da-maquina>.<nome-do-web-site>.com <nome-da-maquina>
 
 terminal, write: reboot
@@ -158,4 +159,7 @@ Pronto...
 Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento que fica no painel de controle
 ,e vá no DHCP , então coloque o ip do servidor dns
 ............................................................................
+
+vi /etc/resolv.conf (see if i needs this) .............See
+nameserver 8.8.8.8
 

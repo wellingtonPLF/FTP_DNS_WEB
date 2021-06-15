@@ -76,7 +76,8 @@ cp db.127 zonas/db.two
 cd zonas
 
 vi db.one
-:..........................................................................................................................:See [changed <ip-da-maquina> to a valid ip]
+:..........................................................................................................................:
+
 $TTL	604800
 @	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
 				2						; Serial
@@ -95,8 +96,8 @@ www	IN	CNAME	<nome-do-website>.com.
 :**************************************************************************************************************************:
 
 vi db.two
-:..........................................................................................................................:See
-[changed <Os ultimos digitos do IP da maquina> to a valid ip]
+:..........................................................................................................................:
+
 $TTL	604800
 @	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
 				1						; Serial
@@ -139,7 +140,7 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-iface eth0 inet static				..............See[changed address to a valid ip]
+iface eth0 inet static				
 	address	<ip-da-maquina>
 	netmask	255.255.255.0
 	network	<network-da-rede>	#Exemplo: 192.168.137.0
@@ -148,8 +149,8 @@ iface eth0 inet static				..............See[changed address to a valid ip]
 
 vi /etc/hosts
 
-#Já na edição coloque:								...........See[changed <seu-ip> to a valid ip]
-<seu-ip>	<nome-da-maquina>.<nome-do-web-site>.com <nome-da-maquina>
+#Já na edição coloque:								
+<ip-da-maquina>	<nome-da-maquina>.<nome-do-web-site>.com <nome-da-maquina>
 
 terminal, write: reboot
 

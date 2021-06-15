@@ -19,7 +19,7 @@ vi file.conf
 
 #Dentro de file.conf coloque:
 <VirtualHost *:80> 
-	ServerName <nome-do-website>
+	ServerName <nome-do-website>.<extensão> #Extensão exemplo: [ .net | .com | .org ]
 	DocumentRoot /var/www/<nome-da-pasta-que-irá-criar>  #Em seguida deverá ser criado a pasta nomeada
 </VirtualHost>
 ....................................................................................................................................................................
@@ -55,18 +55,19 @@ cd /etc/bind
 
 ..................................................................................
 vi named.conf.local
-zone "<nome-do-website>.com" { 
+zone "<nome-do-website>.<extensão>" { 
 	type master;
 	file "/etc/bind/zonas/db.one"; 
 };
 
-zone "[ip-reverso-sem-o-ultimos-numeros-do-ip](ex:)1.168.192.in-addr.arpa" { 
+zone "[ip-reverso-sem-o-ultimos-numeros-do-ip].in-addr.arpa" {       #Exemplo: 192.168.137.129 --> 137.168.192
 	type master;
 	file "/etc/bind/zonas/db.two"; 
 };
 .......................................................................................................
-#Use comando a seguir para saber o ip do roteador e a Use Interface:
-route
+#Use comando a seguir para saber o Ip e a Use Interface (ens33 or eth0):
+> route
+> ifconfig
 
 mkdir zonas
 
@@ -79,19 +80,19 @@ vi db.one
 :..........................................................................................................................:
 
 $TTL	604800
-@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.	root.<nome-do-site>.<extensão>. (
 				2						; Serial
 			   604800						; Refresh
 			    86400						; Retry
 			  2419200						; Expire
 			   604800 )						; Negative Cache TTL
 ;
-@	IN	NS	<nome-da-maquina-virtual>.<nome-do-site>.com.
+@	IN	NS	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.
 @	IN	A	<ip-da-maquina>
 <nome-da-maquina-virtual>	IN	A	<ip-da-maquina>
 <nome-do-website>	IN 	A	<ip-da-maquina>
 roteador	IN	A	<ip-do-roteador>
-www	IN	CNAME	<nome-do-website>.com.
+www	IN	CNAME	<nome-do-website>.<extensão>.
 
 :**************************************************************************************************************************:
 
@@ -99,21 +100,21 @@ vi db.two
 :..........................................................................................................................:
 
 $TTL	604800
-@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.com.	root.<nome-do-site>.com. (
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.	root.<nome-do-site>.<extensão>. (
 				1						; Serial
 			   604800						; Refresh
 			    86400						; Retry
 			  2419200						; Expire
 			   604800 )						; Negative Cache TTL
 ;
-	IN	NS	<nome-da-maquina-virtual>.
-<Os ultimos digitos do IP da maquina>	IN	PTR	<nome-da-maquina-virtual>.<nome-do-site>.com.
-<Os ultimos digitos do IP do roteador>	IN	PTR	roteador.<nome-do-site>.com.
+	IN	NS	<nome-da-maquina-virtual>.	#Tem que deixar a parte inicial em branco mesmo.
+<Os ultimos digitos do IP da maquina>	IN	PTR	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.
+<Os ultimos digitos do IP do roteador>	IN	PTR	roteador.<nome-do-site>.<extensão>.
 
 :**************************************************************************************************************************:
 #Test Zone
-named-checkzone <nome-do-site>.com db.one
-named-checkzone <nome-do-site>.com db.two
+named-checkzone <nome-do-site>.<extensão> db.one
+named-checkzone <nome-do-site>.<extensão> db.two
 
 vi /etc/bind/named.conf.options
 
@@ -139,8 +140,8 @@ vi /etc/network/interfaces
 auto lo
 iface lo inet loopback
 
-auto eth0
-iface eth0 inet static				
+auto ens33
+iface ebs33 inet static				
 	address	<ip-da-maquina>
 	netmask	255.255.255.0
 	network	<network-da-rede>	#Exemplo: 192.168.137.0
@@ -150,7 +151,7 @@ iface eth0 inet static
 vi /etc/hosts
 
 #Já na edição coloque:								
-<ip-da-maquina>	<nome-da-maquina>.<nome-do-web-site>.com <nome-da-maquina>
+<ip-da-maquina>	<nome-da-maquina>.<nome-do-web-site>.<extensão> <nome-da-maquina>
 
 terminal, write: reboot
 

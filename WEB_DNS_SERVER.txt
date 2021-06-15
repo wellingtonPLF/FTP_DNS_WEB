@@ -80,14 +80,14 @@ vi db.one
 :..........................................................................................................................:
 
 $TTL	604800
-@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.	root.<nome-do-site>.<extensão>. (
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-website>.<extensão>.	root.<nome-do-website>.<extensão>. (
 				2						; Serial
 			   604800						; Refresh
 			    86400						; Retry
 			  2419200						; Expire
 			   604800 )						; Negative Cache TTL
 ;
-@	IN	NS	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.
+@	IN	NS	<nome-da-maquina-virtual>.<nome-do-website>.<extensão>.
 @	IN	A	<ip-da-maquina>
 <nome-da-maquina-virtual>	IN	A	<ip-da-maquina>
 <nome-do-website>	IN 	A	<ip-da-maquina>
@@ -100,7 +100,7 @@ vi db.two
 :..........................................................................................................................:
 
 $TTL	604800
-@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.	root.<nome-do-site>.<extensão>. (
+@	IN	SOA	<nome-da-maquina-virtual>.<nome-do-website>.<extensão>.	root.<nome-do-website>.<extensão>. (
 				1						; Serial
 			   604800						; Refresh
 			    86400						; Retry
@@ -108,13 +108,13 @@ $TTL	604800
 			   604800 )						; Negative Cache TTL
 ;
 	IN	NS	<nome-da-maquina-virtual>.	#Tem que deixar a parte inicial em branco mesmo.
-<Os ultimos digitos do IP da maquina>	IN	PTR	<nome-da-maquina-virtual>.<nome-do-site>.<extensão>.
-<Os ultimos digitos do IP do roteador>	IN	PTR	roteador.<nome-do-site>.<extensão>.
+<Os ultimos digitos do IP da maquina>	IN	PTR	<nome-da-maquina-virtual>.<nome-do-website>.<extensão>.
+<Os ultimos digitos do IP do roteador>	IN	PTR	roteador.<nome-do-website>.<extensão>.
 
 :**************************************************************************************************************************:
 #Test Zone
-named-checkzone <nome-do-site>.<extensão> db.one
-named-checkzone <nome-do-site>.<extensão> db.two
+named-checkzone <nome-do-website>.<extensão> db.one
+named-checkzone <nome-do-website>.<extensão> db.two
 
 vi /etc/bind/named.conf.options
 
@@ -151,7 +151,7 @@ iface ebs33 inet static
 vi /etc/hosts
 
 #Já na edição coloque:								
-<ip-da-maquina>	<nome-da-maquina>.<nome-do-web-site>.<extensão> <nome-da-maquina>
+<ip-da-maquina>	<nome-da-maquina>.<nome-do-website>.<extensão> <nome-da-maquina>
 
 terminal, write: reboot
 

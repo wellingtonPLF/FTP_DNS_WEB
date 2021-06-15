@@ -164,7 +164,3 @@ Para se conectar por fora, no SO windowns: entre na central de redes e compartil
 
 vi /etc/resolv.conf (see if i needs this) .............See
 nameserver 8.8.8.8
-
-Command: .......................See
->nslookup server
-

@@ -161,6 +161,3 @@ Pronto...
 Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento que fica no painel de controle
 ,e vá no DHCP , então coloque o ip do servidor dns
 ............................................................................
-
-vi /etc/resolv.conf (see if i needs this) .............See
-nameserver 8.8.8.8

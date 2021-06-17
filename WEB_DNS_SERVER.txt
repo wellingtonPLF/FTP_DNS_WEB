@@ -41,7 +41,7 @@ mkdir <nome_da_pasta_atribuida>
 cd <nome_da_pasta_atribuida>
 touch index.html
 
-#Coloque alguma coisa
+#Coloque alguma coisa, tipo: <h1>DNS works!</h1>
 vi index.html
 
 cd /etc/apache2/sites-available/

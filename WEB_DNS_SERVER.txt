@@ -143,8 +143,8 @@ vi /etc/network/interfaces
 auto lo
 iface lo inet loopback
 
-auto <Use Interface>			#Exemplo: ens33 or eth0
-iface <Use Interface> inet static				
+auto <Use Iface>			#Exemplo: ens33 or eth0
+iface <Use Iface> inet static				
 	address	<ip-da-maquina>
 	netmask	255.255.255.0
 	network	<network-da-rede>	#Exemplo: 192.168.137.0

@@ -20,7 +20,8 @@ cd /var/www/html
 #Change the html by putting something like: <h1>Apache Works!</h1>
 vi index.html  
 
-#See if apache works by accessing url: localhost
+#See if apache works by accessing url: 
+localhost
 
 #Creating a new location:
 cd /etc/apache2/sites-available/

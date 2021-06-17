@@ -128,7 +128,7 @@ forwarders{
 }
 
 #Ir na interface grafica da Desktop do seu SO e abrir as configurações de rede (Network Settings);
-#Add Profile: Mude o nome e no input do DNS (ip do server) coloque o ip da maquina;
+#Add Profile: Mude o nome, e no input do DNS (ip do server) coloque o ip da maquina;
 
 #Voltando ao terminal, colocar: 
 service bind9 start

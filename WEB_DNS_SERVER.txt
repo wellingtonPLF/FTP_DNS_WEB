@@ -2,6 +2,17 @@ apt-get update && apt-get upgrade && apt update && clear
 
 apt-get install apache2 && apt-get install apache2-utils && apt-get install bind9 && apt install vim && apt-get install dnsutils --fix-missing
 
+.......................................................................
+#Veja se tem algum processo utilizando a porta :80
+netstat -tulpn | grep :80
+
+#Se houver e não for o apache, então utilize o comando abaixo para achar o PID:
+ss -6 -tlnp |grep 80
+
+#Com o PID em mãos, mate o processo: 
+kill <pid_number>
+.......................................................................
+
 /etc/init.d/apache2 start
 
 cd /var/www/html
@@ -37,17 +48,6 @@ cd /etc/apache2/sites-available/
 a2ensite file.conf
 
 service apache2 reload
-
-#Se der algum erro faça isso: 
-
-#Veja se tem algum processo utilizando a porta :80
-netstat -tulpn | grep :80
-
-#Se houver e não for o apache, então utilize o comando abaixo:
-ss -6 -tlnp |grep 80
-
-#Ache o PID e então mate o processo: 
-kill <pid_number>
 
 a2ensite file.conf
 

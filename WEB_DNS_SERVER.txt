@@ -66,7 +66,7 @@ zone "[ip-reverso-sem-o-ultimos-numeros-do-ip].in-addr.arpa" {       #Exemplo: 1
 	file "/etc/bind/zonas/db.two"; 
 };
 .......................................................................................................
-#Use comando a seguir para saber o Ip e a Use Interface (ens33 or eth0):
+#Use comando a seguir para saber o Ip e a Use Iface (ens33 or eth0):
 > route
 > ifconfig
 

@@ -121,7 +121,7 @@ named-checkzone <nome-do-website>.<extensão> db.two
 
 vi /etc/bind/named.conf.options
 
-#Procure por forwarders dentro de options e coloque:
+#Procure por forwarders dentro de options e coloque (Lembre-se de descomentar!):
 forwarders{
 	<IP-do-roteador>;
 	8.8.8.8;

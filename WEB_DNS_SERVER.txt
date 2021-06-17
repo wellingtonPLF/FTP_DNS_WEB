@@ -147,6 +147,7 @@ iface <Use Iface> inet static
 	network	<network-da-rede>	#Exemplo: 192.168.137.0
 	broadcast <broadcast-da-rede>	#Exemplo: 192.168.137.255
 	gateway	<ip-do-roteador>
+	dns-nameserver <ip-da-maquina>
 
 vi /etc/hosts
 

@@ -1,4 +1,8 @@
-# Important!--> Read Everything! And if this doesn't work, well your machine could be the problem.
+.______________________________________________________________________________________. 
+   # Important! #
+
+ ⭐ Read Everything! And if this doesn't work, well your machine could be the problem.
+.______________________________________________________________________________________. 
 
 apt-get update && apt-get upgrade && apt update && clear
 

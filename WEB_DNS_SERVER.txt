@@ -4,6 +4,8 @@
  ⭐ Read Everything! And if this doesn't work, well your machine could be the problem.
 .______________________________________________________________________________________. 
 
+# De preferência use --> sudo su;
+
 apt-get update && apt-get upgrade && apt update && clear
 
 apt-get install apache2 && apt-get install apache2-utils && apt-get install bind9 && apt install vim && apt-get install dnsutils --fix-missing

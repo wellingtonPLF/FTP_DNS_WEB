@@ -8,7 +8,7 @@
 
 apt-get update && apt-get upgrade && apt update && clear
 
-apt-get install apache2 && apt-get install apache2-utils && apt-get install bind9 && apt install vim && apt-get install dnsutils --fix-missing
+apt-get install apache2 && apt-get install apache2-utils && apt-get install bind9 && apt install vim && apt install libgnome2-bin && apt-get install dnsutils --fix-missing
 
 .......................................................................
 #Veja se tem algum processo utilizando a porta :80
@@ -23,10 +23,10 @@ kill <pid_number>
 
 /etc/init.d/apache2 start
 
-cd /var/www/html
+cd /var/www/
 
-#Change the html by putting something like: <h1>Apache Works!</h1>
-vi index.html  
+#Change the index.html by putting something like: <h1>Apache Works!</h1> #Use some text editor.
+gnome-open html
 
 #See if apache works by accessing url: [ localhost ]
 

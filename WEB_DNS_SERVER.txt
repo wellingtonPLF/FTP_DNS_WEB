@@ -164,8 +164,8 @@ Pronto...
 
 #Tente acessar o dns server, caso o mesmo não apareça, tente:
 
-> #Esperar alguns segundos e tentar novamente.
-> #Usar: systemctl restart networking
+👉 Esperar alguns segundos e tentar novamente.
+👉 Usar: systemctl restart networking
 
 ............................................................................
 Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento que fica no painel de controle

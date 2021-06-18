@@ -162,10 +162,23 @@ terminal, write: reboot
 
 Pronto...
 
-#Tente acessar o dns server, caso o mesmo não apareça, tente:
+#Tente acessar o dns server (De preferência use: Mozilla FireFox), caso o mesmo não apareça, tente:
 
 👉 Esperar alguns segundos e tentar novamente.
 👉 Usar: systemctl restart networking
+
+#Se houver alguma perda de conexão com a internet, faça:
+
+|.......................................|
+  👉 vi /etc/resolv.conf
+  
+  #Add another nameserver
+  nameserver 8.8.8.8
+|.......................................|
+  👉 systemctl restart networking
+|.......................................|
+
+That's it!
 
 ............................................................................
 Para se conectar por fora, no SO windowns: entre na central de redes e compartilhamento que fica no painel de controle

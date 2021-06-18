@@ -176,6 +176,8 @@ Pronto...
   nameserver 8.8.8.8
 |.......................................|
   👉 systemctl restart networking
+  
+  👉 Tente acessar alguma url> Exemplo: youtube.com
 |.......................................|
 
 That's it!

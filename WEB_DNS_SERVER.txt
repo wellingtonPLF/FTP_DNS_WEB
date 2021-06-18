@@ -32,8 +32,6 @@ gnome-open html
 
 #Creating a new location:
 cd /etc/apache2/sites-available/
-
-touch file.conf
 ....................................................................................................................................................................
 vi file.conf
 
@@ -47,7 +45,6 @@ cd /var/www/
 
 mkdir <nome_da_pasta_atribuida>
 cd <nome_da_pasta_atribuida>
-touch index.html
 
 #Coloque alguma coisa, tipo: <h1>DNS works!</h1>
 vi index.html
@@ -60,10 +57,8 @@ service apache2 reload
 
 a2ensite file.conf
 
-cd /etc/bind
-
+vi /etc/bind/named.conf.local
 ..................................................................................
-vi named.conf.local
 zone "<nome-do-website>.<extensão>" { 
 	type master;
 	file "/etc/bind/zonas/db.one"; 

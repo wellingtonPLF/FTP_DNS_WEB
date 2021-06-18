@@ -40,6 +40,8 @@ vi file.conf
 	ServerName <nome-do-website>.<extensão> #Extensão exemplo: [ .net | .com | .org ]
 	DocumentRoot /var/www/<nome-da-pasta-que-irá-criar>  #Em seguida deverá ser criado a pasta nomeada
 </VirtualHost>
+
+#Para sair e salvar o arquivo, use: [ Esc ] + [ : ] + [ wq! ] + [ Enter ]
 ....................................................................................................................................................................
 cd /var/www/
 
